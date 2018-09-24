@@ -11,9 +11,10 @@ using System;
 namespace STA.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180924035906_AddModels")]
+    partial class AddModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -183,34 +184,6 @@ namespace STA.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("STA.Models.AttendanceModel", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("SessionId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SessionId");
-
-                    b.ToTable("AttendanceModel");
-                });
-
-            modelBuilder.Entity("STA.Models.Class", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("UnitId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UnitId");
-
-                    b.ToTable("Class");
-                });
-
             modelBuilder.Entity("STA.Models.Course", b =>
                 {
                     b.Property<Guid>("Id")
@@ -221,54 +194,14 @@ namespace STA.Data.Migrations
                     b.ToTable("Courses");
                 });
 
-            modelBuilder.Entity("STA.Models.Session", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("ClassId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ClassId");
-
-                    b.ToTable("Session");
-                });
-
             modelBuilder.Entity("STA.Models.Teacher", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid?>("ClassId");
-
-                    b.Property<Guid?>("CourseId");
-
-                    b.Property<Guid?>("UnitId");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("ClassId");
-
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("UnitId");
 
                     b.ToTable("Teacher");
-                });
-
-            modelBuilder.Entity("STA.Models.Unit", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<Guid?>("CourseId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
-
-                    b.ToTable("Unit");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -321,49 +254,6 @@ namespace STA.Data.Migrations
                     b.HasOne("STA.Models.Teacher", "Teacher")
                         .WithMany()
                         .HasForeignKey("TeacherId");
-                });
-
-            modelBuilder.Entity("STA.Models.AttendanceModel", b =>
-                {
-                    b.HasOne("STA.Models.Session")
-                        .WithMany("Attendance")
-                        .HasForeignKey("SessionId");
-                });
-
-            modelBuilder.Entity("STA.Models.Class", b =>
-                {
-                    b.HasOne("STA.Models.Unit")
-                        .WithMany("Classes")
-                        .HasForeignKey("UnitId");
-                });
-
-            modelBuilder.Entity("STA.Models.Session", b =>
-                {
-                    b.HasOne("STA.Models.Class")
-                        .WithMany("Sessions")
-                        .HasForeignKey("ClassId");
-                });
-
-            modelBuilder.Entity("STA.Models.Teacher", b =>
-                {
-                    b.HasOne("STA.Models.Class")
-                        .WithMany("Teachers")
-                        .HasForeignKey("ClassId");
-
-                    b.HasOne("STA.Models.Course")
-                        .WithMany("Teachers")
-                        .HasForeignKey("CourseId");
-
-                    b.HasOne("STA.Models.Unit")
-                        .WithMany("Teachers")
-                        .HasForeignKey("UnitId");
-                });
-
-            modelBuilder.Entity("STA.Models.Unit", b =>
-                {
-                    b.HasOne("STA.Models.Course")
-                        .WithMany("Units")
-                        .HasForeignKey("CourseId");
                 });
 #pragma warning restore 612, 618
         }

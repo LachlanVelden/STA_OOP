@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace STA.Models
 {
     public class Unit
     {
+        public Guid Id { get; set; }
         public string name;
-        public List<Class> classes;
-        public List<Teacher> teachers;
+        public List<Class> Classes { get;set;}
+        public List<Teacher> Teachers { get;set;}
     }
 }

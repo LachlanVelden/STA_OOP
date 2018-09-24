@@ -1,9 +1,11 @@
-﻿namespace STA.Models
+﻿using System;
+
+namespace STA.Models
 {
     public abstract class Attendee
     {
         public string Name;
         public string Email;
-        public string ID;
+        public Guid Id { get; set; }
     }
 }
