@@ -6,9 +6,9 @@ namespace STA.Models
     public class Session
     {
         public Guid Id { get; set; }
-        public string room;
-        public DateTime time;
-        public Teacher teacher;
+        public string Room { get; set; }
+        public DateTime Time { get; set; }
+        public Teacher Teacher { get; set; }
         public List<AttendanceModel> Attendance { get; set; }
     }
 }

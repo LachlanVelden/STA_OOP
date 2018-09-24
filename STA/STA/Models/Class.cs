@@ -6,7 +6,7 @@ namespace STA.Models
     public class Class
     {
         public Guid Id { get; set; }
-        public string Name;
+        public string Name { get; set; }
         public List<Session> Sessions { get;set;}
         public List<Teacher> Teachers { get;set;}
     }
