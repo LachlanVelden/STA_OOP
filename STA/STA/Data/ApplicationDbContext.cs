@@ -25,5 +25,7 @@ namespace STA.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<STA.Models.Unit> Unit { get; set; }
     }
 }
