@@ -34,3 +34,7 @@ Class
  - Name
 
 Course
+ - Name
+ - Code
+ - Units
+ - Teachers
