@@ -27,5 +27,7 @@ namespace STA.Data
         }
 
         public DbSet<STA.Models.Unit> Unit { get; set; }
+        public DbSet<STA.Models.Class> Class { get; set; }
+        public DbSet<STA.Models.Student> Student { get; set; }
     }
 }
