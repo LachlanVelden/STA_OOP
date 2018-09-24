@@ -23,6 +23,25 @@
             @Html.DisplayFor(model => model.Code)
         </dd>
     </dl>
+    @foreach (var item in Model.Units)
+    {
+        <dl class="dl-horizontal">
+            <dt>
+                Id
+            </dt>
+            <dd>
+                @item.Id
+            </dd>
+            <dt>
+                Name
+            </dt>
+            <dd>
+                @item.Name
+            </dd>
+            <dt></dt>
+            <dd><a href="~/Units/Edit/@item.Id?courseId=@Model.Id">Edit</a></dd>
+        </dl>
+    }
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |

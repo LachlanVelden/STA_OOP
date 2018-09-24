@@ -33,7 +33,7 @@ namespace STA.Controllers
                 return NotFound();
             }
 
-            var course = await _context.Courses
+            var course = await _context.Courses.Include(x=> x.Units)
                 .SingleOrDefaultAsync(m => m.Id == id);
             if (course == null)
             {
@@ -59,6 +59,13 @@ namespace STA.Controllers
             if (ModelState.IsValid)
             {
                 course.Id = Guid.NewGuid();
+                course.Units = new List<Unit>()
+                {
+                    new Unit()
+                    {
+                        Name = "Hello World Unit",
+                    }
+                };
                 _context.Add(course);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

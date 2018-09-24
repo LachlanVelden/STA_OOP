@@ -40,6 +40,7 @@ namespace STA.Controllers
                 return NotFound();
             }
 
+           
             return View(unit);
         }
 
@@ -67,7 +68,7 @@ namespace STA.Controllers
         }
 
         // GET: Units/Edit/5
-        public async Task<IActionResult> Edit(Guid? id)
+        public async Task<IActionResult> Edit(Guid? id, Guid? courseId)
         {
             if (id == null)
             {
@@ -79,6 +80,7 @@ namespace STA.Controllers
             {
                 return NotFound();
             }
+            ViewBag.CourseId = courseId;
             return View(unit);
         }
 
@@ -87,8 +89,9 @@ namespace STA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name")] Unit unit)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name")] Unit unit, Guid? courseId)
         {
+            
             if (id != unit.Id)
             {
                 return NotFound();
@@ -112,8 +115,13 @@ namespace STA.Controllers
                         throw;
                     }
                 }
+                if (courseId != null)
+                {
+                    return Redirect("~/Courses/Details/" + courseId.ToString());
+                }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(unit);
         }
 
